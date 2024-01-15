@@ -10,12 +10,9 @@ if [ -f "$file" ] ; then
     rm "$file"
 fi
 
-<<<<<<< HEAD
 # Ensure the file is deleted even if the tests fail
 trap 'rm -f "$file"' EXIT
 
-=======
->>>>>>> 92cadc75e5be81917a46a4648c6f69b1ca51a01e
 flask db upgrade -d core/migrations/
 
 pytest -vvv -s tests/
