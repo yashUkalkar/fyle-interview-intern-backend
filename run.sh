@@ -14,4 +14,9 @@ export FLASK_APP=core/server.py
 # flask db upgrade -d core/migrations/
 
 # Run server
-gunicorn -c gunicorn_config.py core.server:app
+# gunicorn -c gunicorn_config.py core.server:app
+
+# RUN for windows
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+flask run
