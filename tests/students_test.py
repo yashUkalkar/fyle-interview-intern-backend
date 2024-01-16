@@ -86,3 +86,76 @@ def test_assignment_resubmit_error(client, h_student_1):
     assert response.status_code == 400
     assert error_response['error'] == 'FyleError'
     assert error_response["message"] == 'only a draft assignment can be submitted'
+
+def test_assignment_submit_null_teacher(client, h_student_1):
+    """
+        failure case: teacher_id cannot be null
+    """
+    response = client.post(
+        '/student/assignments/submit',
+        headers=h_student_1,
+        json={
+            'id': 2,
+            'teacher_id': None
+        })
+
+    assert response.status_code == 400
+
+def test_assignment_submit_cross(client, h_student_2):
+    """
+        failure case: assignment id 2 is owned by student 1
+    """
+    response = client.post(
+        '/students/assignments/submit',
+        headers=h_student_2,
+        json={
+            'id': 2,
+            'teacher_id': 1
+        }
+    )
+    
+    assert response.status_code == 404
+
+def test_edit_assignment_of_another_student(client, h_student_2):
+    """
+        failure case: assignment id 2 is owned by student 1
+    """
+    response = client.post(
+        '/students/assignments',
+        headers=h_student_2,
+        json={
+            'id': 2,
+            'content': 'Some text that will not be updated'
+        }
+    )
+    
+    assert response.status_code == 404
+
+def test_submit_assignment_teacher_does_not_exist(client, h_student_1):
+    """
+        failure case: assignment cannot be sunmitted to non existent teacher
+    """
+    response = client.post(
+        '/students/assignments/submit',
+        headers=h_student_1,
+        json={
+            'id': 2,
+            'teacher_id': 100002
+        }
+    )
+    
+    assert response.status_code == 404
+    data = response.json
+
+    assert data['error'] == 'NotFound'
+
+def test_get_all_submitted_graded_assignments(client, h_student_1):
+    """
+        failure case: trying to get all assignments from principal endpoint
+    """
+    response = client.get(
+        '/principals/assignments',
+        headers=h_student_1
+    )
+    
+    assert response.status_code == 404

@@ -1,6 +1,6 @@
 import random
 from sqlalchemy import text
-
+# import pytest
 from core import db
 from core.models.assignments import Assignment, AssignmentStateEnum, GradeEnum
 
@@ -50,6 +50,21 @@ def create_n_graded_assignments_for_teacher(number: int = 0, teacher_id: int = 1
     return grade_a_counter
 
 
+# def print_database_state():
+#     # Function to print the database state
+#     print("Database State:")
+#     assignments = Assignment.query.all()
+#     for assignment in assignments:
+#         print(f"{assignment.id} | {assignment.teacher_id} | {assignment.grade} | {assignment.state} | {assignment.student_id}")
+
+
+# # Fixture to print the database state before each test
+# @pytest.fixture(autouse=True)
+# def print_database_state_before_test(request):
+#     if request.node.name == "test_get_assignments_in_various_states":
+#         print("\nBefore Test:")
+#         print_database_state()
+
 def test_get_assignments_in_various_states():
     """Test to get assignments in various states"""
 
@@ -61,6 +76,10 @@ def test_get_assignments_in_various_states():
         sql = fo.read()
 
     sql_result = db.session.execute(text(sql)).fetchall()
+    
+    # Printing expected and obtained results
+    # print(f"\nExpected : {expected_result}\nReceived : {sql_result}")
+    
     for itr, result in enumerate(expected_result):
         assert result[0] == sql_result[itr][0]
         assert result[1] == sql_result[itr][1]

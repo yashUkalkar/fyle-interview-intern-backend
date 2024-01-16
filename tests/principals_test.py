@@ -60,3 +60,35 @@ def test_regrade_assignment(client, h_principal):
 
     assert response.json['data']['state'] == AssignmentStateEnum.GRADED.value
     assert response.json['data']['grade'] == GradeEnum.B
+
+def test_get_teachers(client, h_principal):
+    # Only two teachers exist with id = 1,2 and user_id = 3,4
+    response = client.get(
+        '/principal/teachers',
+        headers=h_principal
+    )
+    
+    assert response.status_code == 200
+    
+    data = response.json['data']
+    for teacher in data:
+        assert teacher['id'] in [1, 2]
+        assert teacher['user_id'] in [3, 4]
+
+def test_grade_assignment_principal_bad_grade(client, h_principal):
+    """
+    failure case: API should allow only grades available in enum
+    """
+    response = client.post(
+        '/principal/assignments/grade',
+        headers=h_principal,
+        json={
+            "id": 1,
+            "grade": "AB"
+        }
+    )
+
+    assert response.status_code == 400
+    data = response.json
+
+    assert data['error'] == 'ValidationError'
