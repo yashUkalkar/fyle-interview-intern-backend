@@ -106,7 +106,7 @@ docker compose down
 
 ### Running the application without Docker
 
-_Activate the virtual environment and install required dependencies before going further as explained in [Installation Section](#install-requirements)_
+_Activate the virtual environment and install required dependencies, as explained in the [Installation Section](#install-requirements)_, before going further.
 
 Use the [run.sh](./run.sh) file to start application server manually.
 
@@ -117,7 +117,7 @@ bash run.sh
 
 ### Running the tests without Docker
 
-_Activate the virtual environment and install required dependencies before going further as explained in [Installation Section](#install-requirements)_
+_Activate the virtual environment and install required dependencies, as explained in the [Installation Section](#install-requirements)_, before going further.
 
 Use the [test.sh](./test.sh) file to manually run tests.
 
@@ -134,13 +134,13 @@ pytest -vvv -s tests/
 
 ## Conclusion
 
-I would like to thank the team at Fyle for conducting the hiring process in such an interesting and productive way. I have definitely learned something new, i.e. **Flask** and **testing** in completing this task.
+I would like to thank the team at Fyle for conducting the hiring process in such an interesting, engaging and productive way. I have definitely learned something new, i.e. **Flask** and **testing** in completing this task.
 
 1. Throughout this challenge, I delved into the intricacies of Flask, a web framework that was new to me. The hands-on experience broadened my understanding of building robust APIs.
 
-2. Testing, a crucial aspect of software development, took center stage in this project. Embracing and implementing testing has added a valuable layer to my skill set. I appreciate the emphasis on test-driven development, and the challenge provided an excellent platform to apply these principles.
+2. Testing, a crucial aspect of software development, played a major role in this project. Embracing and implementing testing has added a valuable layer to my skill set. I appreciate the emphasis on test-driven development, and the challenge provided an excellent platform to apply these principles.
 
-3. Third would be Docker and Docker Compose. Although I had theoretical knowledge of both, the challenge provided me with the oportunity to use the teachnology and deepen my understanding of it.
+3. Third would be Docker and Docker Compose. Although I had theoretical knowledge of both, the challenge provided me with the opportunity to use the technology and deepen my understanding of it.
 
 I am genuinely excited about the prospect of contributing to Fyle's engineering team. The dynamic challenges presented in this task align seamlessly with my aspirations to work on impactful projects. Your feedback is invaluable to me, and I am eager to engage in any additional discussions that may arise.
 
