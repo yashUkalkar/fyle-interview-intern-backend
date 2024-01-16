@@ -1,0 +1,27 @@
+services:
+  flaskapp:
+    build:
+      context: .
+    image: yashukalkar/fyle-backend-intern-flask-assignment:1.0
+    ports:
+      - "5000:5000"
+    environment:
+      # For starting in development mode
+      # - FLASK_ENV=development
+      # - FLASK_DEBUG=1
+      - SQLALCHEMY_DATABASE_URL=sqlite:////flaskApp/core/store.db
+    volumes:
+      - ./core:/flaskApp/core
+      - ./htmlcov:/flaskApp/htmlcov
+
+  tests:
+    build:
+      context: .
+    image: yashukalkar/fyle-backend-intern-flask-assignment-test:1.0
+    command: ["./test.sh"]
+    environment:
+      - FLASK_ENV=test
+      - DATABASE_URL=sqlite:////flaskApp/core/test_store.db
+    volumes:
+      - ./core:/flaskApp/core
+      - ./htmlcov:/flaskApp/htmlcov

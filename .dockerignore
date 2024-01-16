@@ -1,0 +1,44 @@
+# Exclude version control files
+.git
+.gitignore
+
+# Exclude Python-related files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Exclude development and build files
+*.log
+*.db
+*.sqlite3
+.idea/
+.env
+.venv/
+env/
+venv/
+__pypackages__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyc/
+*.pyo/
+*.pyd/
+*.egg-info/
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+*.sqlite3-journal
+
+# Exclude Docker-specific files
+Dockerfile
+.dockerignore
+
+# Exclude temporary files and caches
+*.tmp
+*.swp
+*.bak
+.DS_Store

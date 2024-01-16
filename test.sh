@@ -36,5 +36,8 @@ flask db upgrade -d core/migrations/
 
 
 # for test coverage report
-pytest --cov
+# pytest --cov
 # open htmlcov/index.html
+
+# Saving the coverage report in container volume binded folder
+pytest --cov --cov-report html:/flaskApp/htmlcov
