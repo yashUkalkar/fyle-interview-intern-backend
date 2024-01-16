@@ -15,8 +15,26 @@ trap 'rm -f "$file"' EXIT
 
 flask db upgrade -d core/migrations/
 
-pytest -vvv -s tests/
+# Display data in tables before running tests
+# echo "Checking data in tables:"
+# tables=("users" "assignments" "teachers" "principals" "students")  # Replace with your actual table names
+
+# for table in "${tables[@]}"; do
+#     echo "Table: $table"
+#     sqlite3 "$file" "SELECT * FROM $table;"
+#     echo "----------------------------------------"
+# done
+
+# Display data in tables before running tests
+# echo "Checking data in 'assignments' table before tests:"
+# sqlite3 "$file" "SELECT * FROM assignments;"
+
+# Check the state of the 'assignments' table after tests
+# trap 'echo "Checking data in '\''assignments'\'' table after tests:"; sqlite3 "$file" "SELECT * FROM assignments;"' EXIT
+
+# pytest -vvv -s tests/
+
 
 # for test coverage report
-# pytest --cov
+pytest --cov
 # open htmlcov/index.html
